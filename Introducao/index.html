@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div id="app"></div>
+
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script>
+        const minhaDiv = document.querySelector('#app');
+        ReactDOM.render(
+            React.createElement('h1', null, 
+                React.createElement('span', null, 'Hello World!')
+                ),
+            minhaDiv
+        );
+    </script>
+</body>
+</html>

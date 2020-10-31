@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div id="app"></div>
+
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script>
+        const minhaDiv = document.querySelector('#app');
+        const myTitle = 'MayconSantana';
+        const lista = [{valor: 10}, {valor: 20}, {valor: 30}]
+        let isOpen = true;
+
+        ReactDOM.render(
+            React.createElement('button', null, null),
+            minhaDiv
+        );
+
+
+        ReactDOM.render(
+            <button>
+                {
+                    isOpen ? 'Fechar' : 'Abrir'
+                }
+                            {/* É assim que se escreve um comentario*/}
+
+            </button>,
+            minhaDiv
+        )
+    </script>
+</body>
+</html>
