@@ -21,8 +21,12 @@ class MyForm extends Component {
     }
 
     handleChange(event) {
+        const target = event.target,
+            value = target.type === 'checkbox' ? target.checked : target.value,
+            name = target.name;
+
         this.setState({
-            name: event.target.value
+            [name]: value
         })
     }
 
@@ -39,7 +43,7 @@ class MyForm extends Component {
                 <div>
                     <label>
                         Fruit:
-                        <select value={ state.fruit } multiple={ true } >
+                        <select value={ state.fruit } name="fruit" onChange={ this.handleChange } >
                             {
                                 this.fruits.map(fruit => <option value={ fruit.value } >{ fruit.name }</option>)
                             }
@@ -49,7 +53,7 @@ class MyForm extends Component {
                 <div>
                     <label>
                         Message:
-                        <textarea value={ state.message } />
+                        <textarea name="message" value={ state.message } onChange={ this.handleChange } />
                     </label>
                 </div>
                     
