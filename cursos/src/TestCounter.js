@@ -8,7 +8,21 @@ class TextCounter extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            totalChars: 0
+            totalChars: 0,
+            text: ''
+        }
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(event) {
+        const element = event.target,
+            text = element.value;
+
+        if (text.length <= this.props.limit) {
+            this.setState({
+                totalChars: text.length,
+                text
+            });
         }
     }
 
@@ -17,7 +31,7 @@ class TextCounter extends Component {
         return (
             <div>
                 <h1>Meu Computador</h1>
-                <textarea />
+                <textarea onChange={ this.handleChange } value={ state.text } />
                 <div>
                     <strong>Total:</strong> { state.totalChars } / { props.limit }
                 </div>
