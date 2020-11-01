@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import TextCounter from './TestCounter';
 import MyForm from './MyForm';
+import MyForm2 from './MyForm2';
+
 
 class App extends Component {
   render() {
@@ -9,6 +11,8 @@ class App extends Component {
       <div>
         <TextCounter limit={20}/>
         <MyForm />
+        <hr/>
+        <MyForm2 />
       </div>
     );
   }
