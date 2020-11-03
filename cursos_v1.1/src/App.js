@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 
+import { CourseService } from './services/CourseService';
+import { CategoryService } from './services/CategoryService';
+
 import Course from './components/Course';
 import NewCourseForm from './components/NewCourseForm';
 
@@ -9,36 +12,40 @@ class App extends Component {
     constructor(props) {
       super(props);
       this.state = {
-        courses: [
-          {
-            id: 1,
-            name: 'React',
-            category: 'JavaScript',
-            image: 'https://raw.githubusercontent.com/rexxars/react-hexagon/HEAD/logo/react-hexagon.png' 
-          },
-          {
-            id: 2,
-            name: 'Angular',
-            category: 'JavaScript',
-            image: 'https://th.bing.com/th/id/OIP.RZEtIKWw_7BOLdz7GEJ3EgHaFG?pid=Api&rs=1' 
-          }
-        ]
+        courses: [],
+        categories: []
       }
+      this.startData = this.startData.bind(this);
       this.add = this.add.bind(this);
       this.remove = this.remove.bind(this);
+
+      this.startData();
     }
 
-    add(course) {
+    async startData() {
+      const [courses, categories] = await Promise.all([
+        CourseService.list(),
+        CategoryService.list()
+      ])
+
+      this.setState({
+        courses,
+        categories
+      })
+    }
+
+    async add(course) {
       const { courses } = this.state,
-        newCourse = Object.assign({}, course, {id: (Date.now())});
+        newCourse = await CourseService.create(course);
       courses.push(course);
       this.setState({courses});
     }
 
-    remove(courseId) {
+    async remove(courseId) {
       const { courses } = this.state,
         courseIndex = courses.findIndex(course => course.id == courseId);
 
+      await CourseService.remove(courseId);  
       courses.splice(courseIndex, 1);
       this.setState({courses});  
     }
@@ -48,7 +55,7 @@ class App extends Component {
 
       return (
         <div className="App">
-          <NewCourseForm  onSubmit={ this.add } />
+          <NewCourseForm  onSubmit={ this.add } categories={ state.categories } />
           <ul className="courses-list" >
             {
               state.courses.map(course => <Course course={ course } onRemove={ this.remove } />)
