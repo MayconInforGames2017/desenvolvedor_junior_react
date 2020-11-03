@@ -12,4 +12,10 @@ class MeuComponente extends Component {
     }    
 }
 
+export const MeusComponentes = {
+    TreinaWeb: function() {
+        return <h1>Olá web</h1>
+    }
+}
+
 export default MeuComponente;
