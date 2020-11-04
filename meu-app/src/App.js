@@ -1,17 +1,22 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 
 import MeuComponente, { MeusComponentes } from './components/MeuComponent';
 
-function App() {
-  const nome = 'TreinaWeb';
-  const MeuCompenenteEscolhido = MeusComponentes[nome];
-  return (
-    <div className="App">
-      <MeuComponente />
-      <MeuCompenenteEscolhido nome="Santana"/>
-    </div>
-  );
+class App extends Component {
+  render() {
+    const dados = {
+      nome: "João",
+      sobrenome: "Paulo",
+      idade: 25
+    }
+    return (
+      <div className="App">
+        <MeuComponente {...dados}/>
+      </div>
+    );
+  }
+
 }
 
 export default App;
