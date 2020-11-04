@@ -8,14 +8,15 @@ function MeuComponente() {
 
 class MeuComponente extends Component {
     render() {
-        return <h1>TreinaWeb</h1>;
+        const props = this.props; 
+        return <h1>TreinaWeb, { this.props.nome }</h1>;
     }    
 }
 
 export const MeusComponentes = {
-    TreinaWeb: function() {
-        return <h1>Olá web</h1>
+    TreinaWeb: function(props) {
+    return <h1>Olá web {props.nome} </h1>
     }
-}
+};
 
 export default MeuComponente;
